@@ -10,9 +10,9 @@ from xml.sax.saxutils import escape
 
 W, H = 1200, 320
 FRASES = [
-    "Ingeniería de Software + Ciberseguridad en U-tad",
+    "malware, Linux y ciberseguridad",
     "reglas YARA medidas, no intuidas",
-    "un escritorio que toma el color del wallpaper",
+    "IA en local, sin mandar nada a la nube",
     "a veces se me ocurren cosas",
 ]
 FS = 26          # tamaño de la linea que se escribe

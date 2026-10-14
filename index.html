@@ -4,11 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Jorge García</title>
-  <meta name="description" content="Ingeniería de Software y Ciberseguridad. Proyectos de detección de malware, Linux, IA en local y alguna cosa que se me ocurre.">
+  <meta name="description" content="Ciberseguridad, malware, Linux e IA en local. Proyectos que se pueden tocar: un banco de pruebas de reglas YARA, un asistente que no sale de tu ordenador y un escritorio que toma el color del wallpaper.">
   <meta name="color-scheme" content="dark">
   <meta name="theme-color" content="#0b0d12">
   <meta property="og:title" content="Jorge García">
-  <meta property="og:description" content="Ingeniería de Software y Ciberseguridad. A veces se me ocurren cosas.">
+  <meta property="og:description" content="Ciberseguridad, malware, Linux e IA en local. A veces se me ocurren cosas.">
   <meta property="og:image" content="https://jorgeress.github.io/img/og.png">
   <meta property="og:url" content="https://jorgeress.github.io/">
   <meta name="twitter:card" content="summary_large_image">
@@ -18,6 +18,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/estilo.css">
   <script src="js/main.js" defer></script>
+  <script src="js/cromatoforo.js" defer></script>
+  <script src="js/demos.js" defer></script>
   <script src="js/terminal.js" defer></script>
 </head>
 <body>
@@ -27,10 +29,10 @@
     <a class="logo" href="#inicio"><span class="verde">jorge@arch</span> ~</a>
     <nav>
       <a href="#proyectos">proyectos</a>
-      <a href="#numeros">números</a>
+      <a href="#sobre-mi">sobre mí</a>
       <a href="#contacto">contacto</a>
       <button class="boton-terminal" type="button" data-abre-terminal aria-label="Abrir terminal">
-        <span aria-hidden="true">&gt;_</span><kbd>`</kbd>
+        <span aria-hidden="true">&gt;_</span>
       </button>
     </nav>
   </header>
@@ -41,60 +43,84 @@
       <h1>Jorge García</h1>
       <p class="tipo" aria-live="polite"><span id="tipo"></span><span class="cursor" aria-hidden="true"></span></p>
       <p class="intro">
-        Estudio Ingeniería de Software en U-tad, con la especialización en Ciberseguridad.
-        Me gusta entender cómo funcionan las cosas por dentro y medir si lo que hago funciona, no suponerlo.
+        Me tira la ciberseguridad, sobre todo el malware, y todo lo que corre en Linux.
+        Me gusta el software libre, la IA que funciona en tu propio equipo, automatizar lo repetitivo
+        y medir si lo que hago funciona en vez de suponerlo.
       </p>
       <div class="acciones">
         <a class="boton principal" href="#proyectos">Ver proyectos</a>
         <a class="boton" href="https://github.com/jorgeress">GitHub</a>
-        <button class="boton fantasma" type="button" id="cambia-paleta" title="Cambia la paleta, como cambiar de wallpaper">
-          <span class="muestras" aria-hidden="true"><i></i><i></i><i></i></span> cambiar paleta
+        <button class="boton cromatoforo" type="button" data-abre-cromatoforo aria-haspopup="dialog">
+          <span class="muestras" aria-hidden="true"><i></i><i></i><i></i><i></i></span> cromatóforo
         </button>
       </div>
-      <p class="pista">Pulsa <kbd>º</kbd> o <kbd>`</kbd> para abrir una terminal.</p>
+      <p class="pista">Esta web es un consumidor más de <a href="https://github.com/jorgeress/cromatoforo">cromatóforo</a>: elige un wallpaper y se repinta entera. Y pulsa <kbd>º</kbd> para abrir una terminal.</p>
     </section>
 
     <section id="proyectos">
       <h2><span class="num">01</span> Proyectos</h2>
+
+      <article class="destacado" style="--acento:#ff7a45" data-proyecto="crisol">
+        <div class="texto">
+          <p class="eyebrow">detection engineering</p>
+          <h3>Crisol</h3>
+          <p>Cualquiera puede lanzar una regla YARA. Lo difícil es saber cuánto vale: cuántos falsos positivos suelta contra software legítimo y qué detecta de verdad. Crisol lo convierte en un número reproducible.</p>
+          <p>El banco de pruebas midió un <b>12,18 %</b> de falsos positivos sobre 52 binarios legítimos y guió el rediseño regla a regla hasta el <b>0 %</b> sin perder detección. Luego aguantó el 0 % sobre 315.</p>
+          <p class="enlaces"><a href="https://github.com/jorgeress/crisol">código →</a></p>
+        </div>
+        <div class="demo demo-crisol" id="demo-crisol" aria-label="Demo de Crisol: la misma regla antes y después de afinarla"></div>
+      </article>
+
+      <article class="destacado invertido" style="--acento:#3ddc97" data-proyecto="cibo">
+        <div class="texto">
+          <p class="eyebrow">IA en local</p>
+          <h3>CIBO</h3>
+          <p>Un asistente que corre entero en mi ordenador sobre Ollama. Un modelo de 8B es malísimo con los números, así que sabe cuándo delegar en una calculadora real o en un ejecutor de Python en vez de inventarse la respuesta.</p>
+          <p>Y antes de que nada salga a la nube, una capa detecta tarjetas, contraseñas o tokens y obliga a responder en local.</p>
+          <p class="enlaces"><a href="https://github.com/jorgeress/cibo">código →</a></p>
+        </div>
+        <div class="demo demo-cibo" id="demo-cibo" aria-label="Demo guionizada de CIBO"></div>
+      </article>
+
+      <article class="destacado" style="--acento:#ffd23f" data-proyecto="garabato">
+        <div class="texto">
+          <p class="eyebrow">automatización</p>
+          <h3>Garabato</h3>
+          <p>Escribo el guion y sale el vídeo montado. Cada frase lleva delante una línea de campos con vocabulario cerrado, así que la misma línea da siempre el mismo fotograma.</p>
+          <p>Voz, imagen, subtítulos y ensamblado salen solos, y cada paso es idempotente: puedes cortar por la mitad y retomar. Elige una línea del guion:</p>
+          <p class="enlaces"><a href="https://github.com/jorgeress/garabato">código →</a></p>
+        </div>
+        <div class="demo demo-garabato" id="demo-garabato" aria-label="Demo de Garabato: de una línea de guion a un fotograma"></div>
+      </article>
+
+      <h3 class="subtitulo">Y además</h3>
       <div class="rejilla" id="rejilla"></div>
-      <p class="tambien" id="tambien"></p>
     </section>
 
-    <section id="numeros">
-      <h2><span class="num">02</span> En números</h2>
-      <div class="cifras">
-        <div class="cifra" style="--acento:#ff7a45">
-          <p class="valor"><span><span data-cuenta="12.18" data-decimales="2">0</span> %</span> <span><span class="flecha">→</span> 0 %</span></p>
-          <p>falsos positivos de Crisol sobre 52 binarios legítimos, sin perder detección</p>
+    <section id="sobre-mi">
+      <h2><span class="num">02</span> Sobre mí</h2>
+      <div class="sobre">
+        <div class="bloque">
+          <h3>Lo que me interesa</h3>
+          <ul class="chips" id="intereses"></ul>
         </div>
-        <div class="cifra" style="--acento:#c792ea">
-          <p class="valor"><span data-cuenta="19">0</span></p>
-          <p>programas que Cromatóforo repinta desde un único wallpaper</p>
-        </div>
-        <div class="cifra" style="--acento:#ff5a5f">
-          <p class="valor"><span data-cuenta="10000">0</span></p>
-          <p>épocas de entrenamiento de PokeGAN para inventarse Pokémon</p>
-        </div>
-        <div class="cifra" style="--acento:#8b7bff">
-          <p class="valor"><span data-cuenta="215">0</span></p>
-          <p>obras en Vitrina, cada una con lo que pienso de ella</p>
+        <div class="bloque ahora">
+          <h3><span class="punto" aria-hidden="true"></span> Aprendiendo ahora</h3>
+          <ul class="lista-ahora">
+            <li><b>Hardening y bastionado</b> de sistemas Linux</li>
+            <li><b>Machine learning</b> más allá de usar modelos hechos</li>
+            <li><b>Rust y Go</b>, lo siguiente en la lista</li>
+          </ul>
         </div>
       </div>
-    </section>
 
-    <section id="stack">
-      <h2><span class="num">03</span> Con lo que trabajo</h2>
-      <div class="grupos">
-        <div><h3>Sistemas</h3><p>Linux · Arch · C · C++ · Bash · Lua</p></div>
-        <div><h3>Backend</h3><p>Python · Java</p></div>
-        <div><h3>Frontend</h3><p>JavaScript · TypeScript · React · Next.js · Tailwind</p></div>
-        <div><h3>Seguridad e IA</h3><p>YARA · análisis estático · TensorFlow · Ollama</p></div>
-      </div>
+      <h3 class="subtitulo">Con lo que trabajo</h3>
+      <div class="stack" id="stack"></div>
     </section>
 
     <section id="contacto">
-      <h2><span class="num">04</span> Contacto</h2>
-      <p class="contacto-texto">Si quieres hablar de algún proyecto, de prácticas o de lo que sea, escríbeme.</p>
+      <h2><span class="num">03</span> Contacto</h2>
+      <p class="contacto-texto">Si quieres hablar de algún proyecto, de seguridad o de lo que sea, escríbeme.</p>
       <div class="acciones">
         <a class="boton principal" href="mailto:jgarciamartinezdev@proton.me">jgarciamartinezdev@proton.me</a>
         <a class="boton" href="https://www.linkedin.com/in/jorge-garc%C3%ADa-mart%C3%ADnez-1a2574292">LinkedIn</a>
@@ -104,8 +130,29 @@
   </main>
 
   <footer>
-    <p>HTML, CSS y un poco de JavaScript, sin frameworks. <a href="https://github.com/jorgeress/jorgeress.github.io">Código</a></p>
+    <p>HTML, CSS y un poco de JavaScript, sin frameworks. La paleta la saca tu navegador del wallpaper, como <code>wal</code>. <a href="https://github.com/jorgeress/jorgeress.github.io">Código</a></p>
   </footer>
+
+  <button class="flotante" type="button" data-abre-cromatoforo aria-label="Abrir cromatóforo">
+    <span class="muestras" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+  </button>
+
+  <div class="panel-croma" id="panel-croma" role="dialog" aria-label="Cromatóforo: elige un wallpaper" hidden>
+    <div class="cabecera-panel">
+      <p><b>cromatóforo</b> <span class="apagado">elige un wallpaper</span></p>
+      <button type="button" data-cierra-cromatoforo aria-label="Cerrar">×</button>
+    </div>
+    <div class="fondos" id="fondos"></div>
+    <label class="subir" id="subir">
+      <input type="file" accept="image/*" id="archivo">
+      <span>o suelta aquí <b>tu propia imagen</b></span>
+      <small>se procesa en tu navegador, no se sube a ningún sitio</small>
+    </label>
+    <div class="wal" aria-live="polite">
+      <p class="apagado" id="wal-orden">$ wal -i ninguno</p>
+      <div class="paleta" id="paleta"></div>
+    </div>
+  </div>
 
   <div class="terminal" id="terminal" role="dialog" aria-modal="true" aria-label="Terminal" hidden>
     <div class="ventana">

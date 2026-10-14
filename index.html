@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Jorge García</title>
+  <meta name="description" content="Ingeniería de Software y Ciberseguridad. Proyectos de detección de malware, Linux, IA en local y alguna cosa que se me ocurre.">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#0b0d12">
+  <meta property="og:title" content="Jorge García">
+  <meta property="og:description" content="Ingeniería de Software y Ciberseguridad. A veces se me ocurren cosas.">
+  <meta property="og:image" content="https://jorgeress.github.io/img/og.png">
+  <meta property="og:url" content="https://jorgeress.github.io/">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/estilo.css">
+  <script src="js/main.js" defer></script>
+  <script src="js/terminal.js" defer></script>
+</head>
+<body>
+  <canvas id="fondo" aria-hidden="true"></canvas>
+
+  <header class="nav">
+    <a class="logo" href="#inicio"><span class="verde">jorge@arch</span> ~</a>
+    <nav>
+      <a href="#proyectos">proyectos</a>
+      <a href="#numeros">números</a>
+      <a href="#contacto">contacto</a>
+      <button class="boton-terminal" type="button" data-abre-terminal aria-label="Abrir terminal">
+        <span aria-hidden="true">&gt;_</span><kbd>`</kbd>
+      </button>
+    </nav>
+  </header>
+
+  <main>
+    <section id="inicio" class="hero">
+      <p class="prompt"><span class="verde">~</span> $ whoami</p>
+      <h1>Jorge García</h1>
+      <p class="tipo" aria-live="polite"><span id="tipo"></span><span class="cursor" aria-hidden="true"></span></p>
+      <p class="intro">
+        Estudio Ingeniería de Software en U-tad, con la especialización en Ciberseguridad.
+        Me gusta entender cómo funcionan las cosas por dentro y medir si lo que hago funciona, no suponerlo.
+      </p>
+      <div class="acciones">
+        <a class="boton principal" href="#proyectos">Ver proyectos</a>
+        <a class="boton" href="https://github.com/jorgeress">GitHub</a>
+        <button class="boton fantasma" type="button" id="cambia-paleta" title="Cambia la paleta, como cambiar de wallpaper">
+          <span class="muestras" aria-hidden="true"><i></i><i></i><i></i></span> cambiar paleta
+        </button>
+      </div>
+      <p class="pista">Pulsa <kbd>º</kbd> o <kbd>`</kbd> para abrir una terminal.</p>
+    </section>
+
+    <section id="proyectos">
+      <h2><span class="num">01</span> Proyectos</h2>
+      <div class="rejilla" id="rejilla"></div>
+      <p class="tambien" id="tambien"></p>
+    </section>
+
+    <section id="numeros">
+      <h2><span class="num">02</span> En números</h2>
+      <div class="cifras">
+        <div class="cifra" style="--acento:#ff7a45">
+          <p class="valor"><span><span data-cuenta="12.18" data-decimales="2">0</span> %</span> <span><span class="flecha">→</span> 0 %</span></p>
+          <p>falsos positivos de Crisol sobre 52 binarios legítimos, sin perder detección</p>
+        </div>
+        <div class="cifra" style="--acento:#c792ea">
+          <p class="valor"><span data-cuenta="19">0</span></p>
+          <p>programas que Cromatóforo repinta desde un único wallpaper</p>
+        </div>
+        <div class="cifra" style="--acento:#ff5a5f">
+          <p class="valor"><span data-cuenta="10000">0</span></p>
+          <p>épocas de entrenamiento de PokeGAN para inventarse Pokémon</p>
+        </div>
+        <div class="cifra" style="--acento:#8b7bff">
+          <p class="valor"><span data-cuenta="215">0</span></p>
+          <p>obras en Vitrina, cada una con lo que pienso de ella</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="stack">
+      <h2><span class="num">03</span> Con lo que trabajo</h2>
+      <div class="grupos">
+        <div><h3>Sistemas</h3><p>Linux · Arch · C · C++ · Bash · Lua</p></div>
+        <div><h3>Backend</h3><p>Python · Java</p></div>
+        <div><h3>Frontend</h3><p>JavaScript · TypeScript · React · Next.js · Tailwind</p></div>
+        <div><h3>Seguridad e IA</h3><p>YARA · análisis estático · TensorFlow · Ollama</p></div>
+      </div>
+    </section>
+
+    <section id="contacto">
+      <h2><span class="num">04</span> Contacto</h2>
+      <p class="contacto-texto">Si quieres hablar de algún proyecto, de prácticas o de lo que sea, escríbeme.</p>
+      <div class="acciones">
+        <a class="boton principal" href="mailto:jgarciamartinezdev@proton.me">jgarciamartinezdev@proton.me</a>
+        <a class="boton" href="https://www.linkedin.com/in/jorge-garc%C3%ADa-mart%C3%ADnez-1a2574292">LinkedIn</a>
+        <a class="boton" href="https://github.com/jorgeress">GitHub</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>HTML, CSS y un poco de JavaScript, sin frameworks. <a href="https://github.com/jorgeress/jorgeress.github.io">Código</a></p>
+  </footer>
+
+  <div class="terminal" id="terminal" role="dialog" aria-modal="true" aria-label="Terminal" hidden>
+    <div class="ventana">
+      <div class="barra">
+        <span class="puntos" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span>jorge@arch: ~</span>
+        <button type="button" data-cierra-terminal aria-label="Cerrar terminal">×</button>
+      </div>
+      <div class="salida" id="salida"></div>
+      <form class="linea" id="linea" autocomplete="off">
+        <label for="orden"><span class="verde">jorge@arch</span> ~ $</label>
+        <input id="orden" spellcheck="false" autocapitalize="off">
+      </form>
+    </div>
+  </div>
+</body>
+</html>

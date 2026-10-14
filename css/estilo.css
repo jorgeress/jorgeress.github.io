@@ -125,7 +125,7 @@ h1 { font: 700 clamp(46px, 8.5vw, 96px)/1.02 var(--mono); letter-spacing: -.045e
 .arco { fill: none; stroke: var(--apagado); stroke-width: 1.5; stroke-linecap: round; opacity: .45; transition: stroke .5s, opacity .5s; }
 .arco.activo { stroke: var(--acento); opacity: 1; }
 .nodo circle { fill: var(--fondo); stroke: var(--apagado); stroke-width: 1.5; transition: fill .5s, stroke .5s; }
-.nodo text { font: 500 13px var(--mono); fill: var(--apagado); text-anchor: middle; transition: fill .5s; }
+.nodo text { font: 500 17px var(--mono); fill: var(--apagado); text-anchor: middle; transition: fill .5s; }
 .nodo text.der { text-anchor: start; }
 .nodo text.izq { text-anchor: end; }
 .nodo.activo circle { fill: var(--acento); stroke: var(--acento); }

@@ -76,12 +76,18 @@ const reducido = window.reducido;
 (() => {
   const el = document.getElementById("tipo");
   const frases = [
-    "ciberseguridad, Linux y machine learning",
-    "reglas YARA medidas, no intuidas",
-    "IA en local, sin mandar nada a la nube",
-    "si se repite, lo automatizo",
-    "ahora mismo: hardening, Rust y Go",
-    "a veces se me ocurren cosas",
+    "sudo pacman -Syu",
+    "yara -r reglas/ ./muestras",
+    "nmap -sV 192.168.1.0/24",
+    'git commit -m "arreglado, creo"',
+    "tail -f /var/log/auth.log",
+    "chmod 600 ~/.ssh/id_ed25519",
+    "docker compose up -d",
+    "ollama run llama3.1",
+    "wal -i wallpaper.jpg",
+    "make && ./a.out",
+    "rm -rf node_modules && npm i",
+    ":wq",
   ];
   if (reducido) { el.textContent = frases[0]; return; }
   let f = 0, n = 0, borrando = false;

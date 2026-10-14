@@ -10,15 +10,23 @@ from xml.sax.saxutils import escape
 
 W, H = 1200, 320
 FRASES = [
-    "malware, Linux y ciberseguridad",
-    "reglas YARA medidas, no intuidas",
-    "IA en local, sin mandar nada a la nube",
-    "a veces se me ocurren cosas",
+    'sudo pacman -Syu',
+    'yara -r reglas/ ./muestras',
+    'nmap -sV 192.168.1.0/24',
+    'git commit -m "arreglado, creo"',
+    'tail -f /var/log/auth.log',
+    'chmod 600 ~/.ssh/id_ed25519',
+    'docker compose up -d',
+    'ollama run llama3.1',
+    'wal -i wallpaper.jpg',
+    'make && ./a.out',
+    'rm -rf node_modules && npm i',
+    ':wq',
 ]
 FS = 26          # tamaño de la linea que se escribe
 CHAR = FS * 0.61 # ancho aproximado de un caracter monoespaciado
-X0, Y0 = 72, 236
-TRAMO = 4.5      # segundos por frase
+X0, Y0 = 72 + 2 * 26 * 0.61, 236
+TRAMO = 3.6      # segundos por frase
 CICLO = TRAMO * len(FRASES)
 MANCHAS = [  # color, cx, cy, r, desplazamiento, duracion
     ("#ff7a45", 980, 70, 170, (-120, 60), 18),
@@ -58,7 +66,7 @@ def main(destino):
             f".m{i}{{animation:a{i} {d}s ease-in-out infinite alternate}}"
             f"@keyframes a{i}{{to{{transform:translate({dx}px,{dy}px)}}}}"
         )
-    svg = f"""<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}" role="img" aria-label="Jorge García: {escape(FRASES[0])}">
+    svg = f"""<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}" role="img" aria-label="Jorge García">
 <style>
   .nombre{{font:700 76px 'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;fill:#e8eaf0}}
   .prompt{{font:400 22px 'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;fill:#8b93a7}}
@@ -80,9 +88,10 @@ def main(destino):
   <rect width="{W}" height="{H}" fill="#0b0d12"/>
   <g filter="url(#blur)">{''.join(manchas)}</g>
   <rect width="{W}" height="{H}" fill="url(#puntos)"/>
-  <text class="prompt" x="{X0}" y="82"><tspan fill="#3ddc97">jorge@arch</tspan> ~ $ whoami</text>
-  <text class="nombre" x="{X0 - 4}" y="168">Jorge García</text>
-  <rect x="{X0}" y="186" width="120" height="5" rx="2.5" fill="url(#linea)"/>
+  <text class="prompt" x="72" y="82"><tspan fill="#3ddc97">jorge@arch</tspan> ~ $ whoami</text>
+  <text class="nombre" x="68" y="168">Jorge García</text>
+  <rect x="72" y="186" width="120" height="5" rx="2.5" fill="url(#linea)"/>
+  <text class="prompt" x="72" y="{Y0}" style="font-size:{FS}px">$</text>
   {''.join(frase(i, t) for i, t in enumerate(FRASES))}
 </g>
 </svg>

@@ -4,17 +4,14 @@
 (() => {
   const raiz = document.documentElement;
   const reducido = window.reducido;
-  const FONDOS = [
-    { nombre: "akira", src: "img/fondos/akira.jpg" },
-    { nombre: "kyogre", src: "img/fondos/kyogre.jpg" },
-    { nombre: "arcane", src: "img/fondos/arcane.jpg" },
-    { nombre: "abbey-road", src: "img/fondos/abbey-road.jpg" },
-  ];
+  // imagenes de prueba con paletas muy distintas (las genera tools/fondos.py)
+  const FONDOS = ["oceano", "atardecer", "bosque", "desierto", "neon", "nieve"]
+    .map((nombre) => ({ nombre, src: `img/fondos/${nombre}.jpg` }));
   const ORIGINAL = {
-    fondo: "#0b0d12", superficie: "#11151d", borde: "#232a37", texto: "#e8eaf0",
-    suave: "#c3c8d4", apagado: "#8b93a7",
-    c1: "#ff7a45", c2: "#c792ea", c3: "#3ddc97", c4: "#ff4fa3",
-    muestra: ["#0b0d12", "#232a37", "#ff7a45", "#ff4fa3", "#c792ea", "#3ddc97", "#8b93a7", "#e8eaf0"],
+    fondo: "#0d0f13", superficie: "#14171d", borde: "#252a33", texto: "#e6e8ec",
+    suave: "#b4b9c3", apagado: "#7d8492",
+    c1: "#8fb4ff", c2: "#c9a7ff", c3: "#7fd6b0", c4: "#ffb38a",
+    muestra: ["#0d0f13", "#14171d", "#252a33", "#7d8492", "#8fb4ff", "#c9a7ff", "#7fd6b0", "#e6e8ec"],
   };
   let actual = "original";
 
@@ -72,7 +69,7 @@
     const oscuros = grupos.filter((g) => g.hsl[2] < 0.5);
     const base = (oscuros.length ? oscuros : grupos).sort((a, b) => b.n - a.n)[0];
     const [hb, sb0] = base.hsl;
-    const sb = Math.min(sb0, 0.5) * 0.55;
+    const sb = Math.min(sb0, 0.55) * 0.75;
 
     // acentos: los grupos mas saturados y abundantes, con tonos distintos
     const candidatos = [...grupos].sort((a, b) => b.hsl[1] * (0.35 + Math.sqrt(b.n)) - a.hsl[1] * (0.35 + Math.sqrt(a.n)));
@@ -92,7 +89,7 @@
     while (acentos.length < 4) acentos.push(acentos[0] || hsl(hb, 0.5, 0.68));
 
     return {
-      fondo: hsl(hb, sb, 0.065), superficie: hsl(hb, sb, 0.1), borde: hsl(hb, sb * 1.2, 0.19),
+      fondo: hsl(hb, sb, 0.08), superficie: hsl(hb, sb, 0.115), borde: hsl(hb, sb, 0.21),
       texto: hsl(hb, 0.2, 0.93), suave: hsl(hb, 0.14, 0.78), apagado: hsl(hb, 0.12, 0.6),
       c1: acentos[0], c2: acentos[1], c3: acentos[2], c4: acentos[3],
       muestra: [...grupos].sort((a, b) => lum(a.rgb) - lum(b.rgb)).map((g) => hex(g.rgb)),
@@ -115,7 +112,6 @@
     actual = nombre;
     document.querySelector('meta[name="theme-color"]').content = pal.fondo;
     pintaPanel(pal, nombre);
-    window.repintaFondo?.();
   }
 
   function aplica(pal, nombre, origen) {
@@ -171,15 +167,16 @@
   const paleta = document.getElementById("paleta");
   const flotante = document.querySelector(".flotante");
 
-  fondos.innerHTML =
-    `<button type="button" data-fondo="original" aria-label="Paleta original"><span class="original"><span>original</span></span></button>`
-    + FONDOS.map((f) => `<button type="button" data-fondo="${f.nombre}" aria-label="Wallpaper ${f.nombre}">`
-      + `<img src="${f.src}" alt="" loading="lazy"><span class="nombre">${f.nombre}</span></button>`).join("");
+  const restaurar = document.getElementById("restaurar");
+  fondos.innerHTML = FONDOS.map((f) => `<button type="button" data-fondo="${f.nombre}" aria-label="Probar con ${f.nombre}" title="${f.nombre}">`
+    + `<img src="${f.src}" alt="" loading="lazy"></button>`).join("");
+  restaurar.addEventListener("click", (e) => aplicaFondo("original", { x: e.clientX, y: e.clientY }));
 
   function pintaPanel(pal, nombre) {
     orden.textContent = nombre === "original" ? "$ wal --original" : `$ wal -i ${nombre}`;
     paleta.innerHTML = pal.muestra.map((c, i) => `<i style="background:${c};animation-delay:${i * 40}ms" title="${c}"></i>`).join("");
     fondos.querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.fondo === nombre)));
+    restaurar.hidden = nombre === "original";
   }
 
   fondos.addEventListener("click", (e) => {

@@ -38,10 +38,12 @@
       </div>`;
 
     el.innerHTML = `
-      <span class="etiqueta-demo">reglas y cifras reales · binarios de ejemplo</span>
-      <div class="conmutador" role="group" aria-label="Versión de las reglas">
-        <button type="button" data-m="antes">antes de afinar</button>
-        <button type="button" data-m="despues">después</button>
+      <div class="cabeza-demo">
+        <div class="conmutador" role="group" aria-label="Versión de las reglas">
+          <button type="button" data-m="antes">antes</button>
+          <button type="button" data-m="despues">después</button>
+        </div>
+        <span>reglas y cifras reales · binarios de ejemplo</span>
       </div>
       <div class="muestras-bin">
         ${bin("instalador.exe", "legítimo, firmado", [["IsDebuggerPresent", "w"], ["OutputDebugString", "w"], ["GetProcAddress"], ["LoadLibraryW"], ["VirtualAlloc"]], 214, "legit")}
@@ -49,7 +51,7 @@
       </div>
       <pre class="condicion" aria-live="polite"></pre>
       <div class="barras">
-        <p class="apagado" style="margin:0 0 2px;font-size:12px">falsos positivos sobre 52 binarios legítimos</p>
+        <p class="leyenda">falsos positivos sobre 52 binarios legítimos</p>
         ${BARRAS.map(([n, v]) => `<div class="barra-fila${n === "global" ? " global" : ""}"><span class="n">${n}</span><span class="pista-b"><span class="relleno" style="width:0"></span></span><span class="v">0 %</span></div>`).join("")}
       </div>`;
 
@@ -77,7 +79,7 @@
         f.querySelector(".relleno").style.width = `${(v / 12.5) * 100}%`;
         const t = f.querySelector(".v");
         t.textContent = m === "antes" ? fmt(v) : (BARRAS[i][0] === "global" ? "0,0 %" : "0 %");
-        t.style.color = m === "antes" ? "#ff7b7b" : "#3ddc97";
+        t.style.color = m === "antes" ? "var(--mal)" : "var(--bien)";
       });
     }
     el.querySelector(".conmutador").addEventListener("click", (e) => {
@@ -124,8 +126,7 @@
       },
     ];
     el.innerHTML = `
-      <span class="etiqueta-demo">demo guionizada · herramientas reales del repo</span>
-      <div class="estado-cibo"><span><span class="led"></span>ollama · llama3.1:8b</span><span>privacidad: balanced</span></div>
+      <div class="cabeza-demo"><span><span class="led"></span>ollama · llama3.1:8b</span><span>demo guionizada</span></div>
       <div class="chat" aria-live="polite"></div>
       <div class="sugerencias">${ESCENAS.map((s, i) => `<button type="button" data-i="${i}">${s.boton}</button>`).join("")}</div>`;
     const chat = el.querySelector(".chat");
@@ -196,25 +197,29 @@
           <text x="252" y="148" text-anchor="middle" class="aparece-svg" style="font:700 11px Inter,sans-serif;fill:#111;--retraso:1.4s">DISCOVERY</text>`,
       },
       {
-        campos: "(shot: medium | char: 1, worried | pose: arms-crossed | prop: red-X right)",
-        voz: "Aunque cambiar sea mejor, nos quedamos como estamos.",
+        campos: "(shot: medium | char: 1, curious | pose: thinking | bg: plain-white)",
+        voz: "¿Y si lo de siempre no es lo mejor?",
         svg: () => `
-          <circle class="trazo" style="--l:115" cx="140" cy="52" r="18" fill="none" stroke="#1b1b1b" stroke-width="4"/>
-          <path class="trazo" style="--l:20;--retraso:.4s;--d:.3s" d="M131 45 l6 3 M149 45 l-6 3" stroke="#1b1b1b" stroke-width="3" stroke-linecap="round"/>
-          <path class="trazo" style="--l:20;--retraso:.5s;--d:.3s" d="M132 61 q4 -4 8 0 q4 4 8 0" fill="none" stroke="#1b1b1b" stroke-width="3" stroke-linecap="round"/>
-          <path class="trazo" style="--l:60;--retraso:.5s" d="M140 70 V122" stroke="#1b1b1b" stroke-width="4" stroke-linecap="round"/>
-          <path class="trazo" style="--l:100;--retraso:.8s" d="M118 88 L162 100 M162 88 L118 100" stroke="#1b1b1b" stroke-width="4" stroke-linecap="round"/>
-          <path class="trazo" style="--l:90;--retraso:1s" d="M140 122 l-17 36 M140 122 l17 36" fill="none" stroke="#1b1b1b" stroke-width="4" stroke-linecap="round"/>
-          <path class="trazo" style="--l:120;--retraso:1.2s;--d:.5s" d="M214 62 l42 42 M256 62 l-42 42" stroke="#e03131" stroke-width="8" stroke-linecap="round"/>`,
+          <path class="trazo" style="--l:200;--d:.6s" d="M40 160 H280" stroke="#8a6a4a" stroke-width="2" stroke-linecap="round"/>
+          <circle class="trazo" style="--l:120" cx="160" cy="50" r="19" fill="none" stroke="#1b1b1b" stroke-width="4"/>
+          <path class="trazo" style="--l:14;--retraso:.4s;--d:.25s" d="M150 42 l6 -2" stroke="#1b1b1b" stroke-width="3" stroke-linecap="round"/>
+          <path class="trazo" style="--l:14;--retraso:.45s;--d:.25s" d="M164 44 l6 0" stroke="#1b1b1b" stroke-width="3" stroke-linecap="round"/>
+          <circle class="aparece-svg" style="--retraso:.5s" cx="153" cy="50" r="2.4" fill="#1b1b1b"/>
+          <circle class="aparece-svg" style="--retraso:.5s" cx="167" cy="50" r="2.4" fill="#1b1b1b"/>
+          <path class="trazo" style="--l:14;--retraso:.55s;--d:.25s" d="M155 60 h9" stroke="#1b1b1b" stroke-width="3" stroke-linecap="round"/>
+          <path class="trazo" style="--l:60;--retraso:.5s" d="M160 69 V118" stroke="#1b1b1b" stroke-width="4" stroke-linecap="round"/>
+          <path class="trazo" style="--l:70;--retraso:.8s" d="M160 84 L182 100 L168 66" fill="none" stroke="#1b1b1b" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          <path class="trazo" style="--l:50;--retraso:.9s" d="M160 84 L140 112" stroke="#1b1b1b" stroke-width="4" stroke-linecap="round"/>
+          <path class="trazo" style="--l:90;--retraso:1s" d="M160 118 l-15 40 M160 118 l15 40" fill="none" stroke="#1b1b1b" stroke-width="4" stroke-linecap="round"/>
+          <text x="196" y="40" class="aparece-svg" style="font:700 26px Inter,sans-serif;fill:#1b1b1b;--retraso:1.3s">?</text>`,
       },
     ];
     const ETAPAS = ["voz", "imagen", "subtítulos", "montaje"];
     const pintaCampos = (t) => t.replace(/(\w[\w-]*):/g, '<span class="campo">$1:</span>');
 
     el.innerHTML = `
-      <span class="etiqueta-demo">sintaxis real del guion</span>
       <div class="guion">${LINEAS.map((l, i) => `<button type="button" data-i="${i}">${pintaCampos(l.campos)}</button>`).join("")}</div>
-      <div class="pipeline">${ETAPAS.map((e) => `<span>${e}</span>`).join("")}</div>
+      <div class="cabeza-demo"><div class="pipeline">${ETAPAS.map((e) => `<span>${e}</span>`).join("")}</div><span>sintaxis real del guion</span></div>
       <div class="lienzo"><svg viewBox="0 0 320 180" role="img" aria-label="Fotograma generado"></svg><div class="subtitulo-video"></div></div>
       <div class="onda">${"<i></i>".repeat(48)}</div>
       <div class="linea-tiempo"><span class="tiempo">00:00</span><span class="progreso"><i></i></span><span class="salida-v">final_video.mp4</span></div>`;
@@ -239,14 +244,14 @@
       svg.innerHTML = ""; sub.classList.remove("visible"); sub.textContent = "";
       prog.style.transition = "none"; prog.style.width = "0"; salida.textContent = "final_video.mp4";
       tiempo.textContent = "00:00";
-      barras.forEach((b) => { b.style.height = "3px"; b.style.opacity = ".3"; });
+      barras.forEach((b) => { b.style.height = "2px"; b.style.opacity = ".5"; });
 
       marca(0);
       for (let t = 0; t < 14 && sigue(); t++) {
         barras.forEach((b, k) => {
           const on = k <= (t + 1) * 3.5;
-          b.style.height = on ? `${6 + Math.abs(Math.sin(k * 0.7 + t)) * 26 * (0.4 + Math.random() * 0.6)}px` : "3px";
-          b.style.opacity = on ? ".9" : ".3";
+          b.style.height = on ? `${5 + Math.abs(Math.sin(k * 0.7 + t)) * 22 * (0.4 + Math.random() * 0.6)}px` : "2px";
+          b.style.opacity = on ? "1" : ".5";
         });
         await dormir(90);
       }
@@ -276,6 +281,6 @@
       const b = e.target.closest("button");
       if (b) { auto = false; corre(+b.dataset.i); }
     });
-    alVer(el, () => corre(0));
+    alVer(el, () => { if (turno === 0) corre(0); });
   })();
 })();

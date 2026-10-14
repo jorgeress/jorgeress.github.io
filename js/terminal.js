@@ -126,7 +126,7 @@
   ORDENES.dir = ORDENES.ls;
 
   function ejecuta(linea) {
-    escribe(`<span class="verde">jorge@arch</span> ~ $ ${esc(linea)}`, "orden");
+    escribe(`<span class="acento">jorge@arch</span> ~ $ ${esc(linea)}`, "orden");
     const [orden, ...args] = linea.trim().split(/\s+/);
     if (!orden) return;
     const f = ORDENES[orden.toLowerCase()];

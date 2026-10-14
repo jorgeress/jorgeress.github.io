@@ -85,7 +85,7 @@ h2 { font: 700 clamp(24px, 3.4vw, 30px) var(--mono); margin: 0 0 48px; letter-sp
 /* --- hero --- */
 .hero {
   min-height: calc(100svh - 70px);
-  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 340px);
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 420px);
   align-items: center; gap: 48px; padding: 40px 0 80px;
 }
 .prompt { font: 400 16px var(--mono); color: var(--apagado); margin: 0 0 6px; }
@@ -119,13 +119,13 @@ h1 { font: 700 clamp(46px, 8.5vw, 96px)/1.02 var(--mono); letter-spacing: -.045e
 .pista a { color: var(--suave); }
 
 /* ciclo medir > comparar > automatizar > optimizar */
-.ciclo { margin: 0; justify-self: center; width: 100%; max-width: 380px; }
+.ciclo { margin: 0; justify-self: center; width: 100%; max-width: 440px; }
 .ciclo svg { display: block; width: 100%; height: auto; overflow: visible; }
 .pista-ciclo { fill: none; stroke: var(--borde); stroke-width: 1; stroke-dasharray: 2 6; }
 .arco { fill: none; stroke: var(--apagado); stroke-width: 1.5; stroke-linecap: round; opacity: .45; transition: stroke .5s, opacity .5s; }
 .arco.activo { stroke: var(--acento); opacity: 1; }
 .nodo circle { fill: var(--fondo); stroke: var(--apagado); stroke-width: 1.5; transition: fill .5s, stroke .5s; }
-.nodo text { font: 500 17px var(--mono); fill: var(--apagado); text-anchor: middle; transition: fill .5s; }
+.nodo text { font: 500 21px var(--mono); fill: var(--apagado); text-anchor: middle; transition: fill .5s; }
 .nodo text.der { text-anchor: start; }
 .nodo text.izq { text-anchor: end; }
 .nodo.activo circle { fill: var(--acento); stroke: var(--acento); }
@@ -378,7 +378,7 @@ footer { max-width: var(--ancho); margin: 80px auto 0; padding: 28px 24px 48px; 
 
 @media (max-width: 900px) {
   .hero { grid-template-columns: 1fr; min-height: auto; padding-top: 72px; }
-  .ciclo { max-width: 320px; justify-self: start; }
+  .ciclo { max-width: 380px; justify-self: start; }
   .destacado { grid-template-columns: 1fr; margin-bottom: 80px; }
   .destacado.invertido .texto { order: 0; }
   .sobre { grid-template-columns: 1fr; }
